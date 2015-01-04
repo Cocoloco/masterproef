@@ -1,0 +1,57 @@
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: boek.aux
+A level-1 auxiliary file: titel.aux
+A level-1 auxiliary file: voorwoord.aux
+A level-1 auxiliary file: inleiding.aux
+A level-1 auxiliary file: privacyrisicos_bij_klassieke_aanbevelingssystemen.aux
+A level-1 auxiliary file: onderzoek_bestaande_methodes.aux
+A level-1 auxiliary file: privacyvriendelijke_oplossing.aux
+The style file: plain.bst
+Database file #1: refbib.bib.bib
+Warning--I didn't find a database entry for "nar"
+Warning--to sort, need editor, organization, or key in ZErkinDyn
+Warning--empty school in CisseeThesis2009
+Warning--empty booktitle in privdisc
+You've used 16 entries,
+            2118 wiz_defined-function locations,
+            614 strings with 7827 characters,
+and the built_in function-call counts, 6744 in all, are:
+= -- 691
+> -- 301
+< -- 10
++ -- 120
+- -- 101
+* -- 429
+:= -- 1024
+add.period$ -- 54
+call.type$ -- 16
+change.case$ -- 94
+chr.to.int$ -- 0
+cite$ -- 19
+duplicate$ -- 294
+empty$ -- 532
+format.name$ -- 101
+if$ -- 1519
+int.to.chr$ -- 0
+int.to.str$ -- 16
+missing$ -- 12
+newline$ -- 79
+num.names$ -- 32
+pop$ -- 122
+preamble$ -- 1
+purify$ -- 80
+quote$ -- 0
+skip$ -- 239
+stack$ -- 0
+substring$ -- 407
+swap$ -- 112
+text.length$ -- 10
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 63
+warning$ -- 3
+while$ -- 58
+width$ -- 18
+write$ -- 187
+(There were 4 warnings)

@@ -1,0 +1,33 @@
+\subsection{Thresholdprotocol}
+\label{threshold}
+
+Dit protocol uit Privacy-Preserving Face Recognition \cite{facerecog} laat toe om twee ge\"encrypteerde waarden $[a]_2$ en $[b]_2$ te vergelijken met als resultaat een ge\"encrypteerde bit die $[1]_2$ is als $a \geq b$ als en $[0]_2$ is als $a < b$. We gebruiken dit om een gelijkeniswaarde sim tussen de gebruikers te verlijken met een drempelwaarde d. De drempelwaarde kiest de recommender zelf afhankelijk van de dataset en encrypteert hij dus met de publieke Pailliersleutel van de controleserver.
+
+Het aanbevelingssysteem berekent eerst $[z]_2$
+\begin{equation}
+[z]_2 = [2^l + sim - d]_2 =[2^l]_2.[sim]_2.[d]_2  \end{equation}
+
+Als we het binair bekijken geeft de grootste bit van $[z]_2$  inderdaad de verhouding van sim ten opzichte van d aan.
+Deze bit is de l-de bit (geteld vanaf rechts beginnend bij 0) en wordt $z_l$ genoemd. De waarde van $z_l$ kan als volgt berekend worden.
+\begin{equation}
+\label{zl}
+z_l = 2^{-l}.(z-(zmod2^l)) \end{equation}
+
+Hier worden eerst alle bits behalve de meest linkse op 0 gezet door $z-(zmod2^l)$ en wordt de bit dan naar rechts geschoven door te vermenigvuldigen met $2^{-l}$. De aanbevelingsserver beschikt niet over $[zmod2^l]_2$ en zal dus hulp moeten vragen aan de controleserver, die de waarde van z niet mag kennen. De waarde van z wordt dus eerst vermomd met een randomwaarde r.
+\begin{equation}
+[c]_2= [z+r]_2 = [z]_2.[r]_2 \end{equation}
+De c-waarde wordt dan naar de controleserver gestuurd die c uitpakt en $cmod2^l$ berekent. Hij stuurt $cmod2^l$ op twee manieren terug. E\'n maal geheel Paillierge\"encrypteerd en \'e\'enmaal opgesplitst in bits DGKge\"encrypteerd (zie straks). Omdat $[c]_2= [z+r]_2 = [z]_2.[r]_2$ geldt dat:
+
+\begin{equation}
+\label{zmod}zmod2^l = (cmod2^l - rmod2^l)mod2^l \end{equation}
+Dus afhankelijk van of $cmod2^l < rmod2^l$ moeten we bij $cmod2^l - rmod2^l$ wel of niet $2^l$ bijtellen. Dit is het zogenaamde millionairsprobleem van Yao waarbij twee partijen beschikken over een getal dat ze niet aan de andere partij bekend willen maken maar ze willen wel weten welke het grootste is. Hiervoor worden de $e_i$-bits (i staat voor de plaats van de bit) berekend, waarvoor we de bits van $cmod2^l$ en $rmod2^l$ gebruiken. Er wordt voor dit subprotocol een DGKsysteem gebruikt voor effici\"entieredenen.  De recommender kiest een s-waarde 1 of -1 die aangeeft in welke richting de vergelijking gebeurt. De DGKencryptie geven we aan met dubbele haakjes [[]].
+\begin{equation}
+[[e_i]]=[[sim_i - r_i + s+ 3.\sum_{j=i+1}^{l-1}(sim_j \oplus r_j)]]
+\end{equation}
+Eens we alle $e_i$-bits berekend hebben kunnen we de $\gamma$-bit bepalen. Deze is 0 als er één $e_i$-bit 0 is en anders 1.
+\begin{itemize}
+ 
+\item Als s=1 is en $\gamma = 1$  dan is $sim > r$, is $\gamma=0$ dan is $sim< r$.
+\item  Als s=-1 is en $\gamma = 1$  dan is $sim < r$, is $\gamma=0$ dan is $sim> r$.
+\end{itemize}   Het aanbevelingssysteem stuurt de $e_i$-bits gepermuteerd naar de controleserver. Die decrypteert ze en berekent de $\gamma$-bit, hij weet niet wat deze betekent aangezien hij de waarde van s niet kent. Hij encrypteert de $\gamma$-bit met zijn publieke Pailliersleutel en stuurt deze terug naar de recommenderserver. De recommenderserver kent de waarde van s en weet dus wat deze ge\"encrypteerde $\gamma$-bit betekent. Hij kan dus $[\lambda]_2$ berekenen de bit die aangeeft of $cmod2^l < rmod2^l$ en dus of $2^l$ moet opgeteld worden bij $cmod2^l - rmod2^l$ in \ref{zmod}.
+Als $s = 1$ heeft  $\lambda=1$ de omgekeerde bitwaarde als $\gamma$. De omgekeerde bitwaarde kan berekend worden door  $\gamma \oplus 1$. De XOR functie wordt nagebootst met $[a \oplus b]_2= [a + b - 2ab]_2 = [a]_2*[b]_2*[a]_2^(-2b)$ Als $s =-1$ is $\lambda = \gamma$. Hierdoor heeft de recommender dus genoeg info om \ref{zmod} te berekenen en daarna \ref{zl}.

@@ -1,0 +1,30 @@
+\subsection{Homomorfe encryptie}
+Homomorfe encryptie is een encryptietechniek die toelaat om bewerkingen op cijferteksten uit te voeren die overeenkomen met bewerkingen op de onderliggende data van deze cijferteksten. Er wordt een onderscheid gemaakt tussen additief en multiplicatief homomorf. Additieve cryptosystemen bevatten een operatie op twee cijferteksten die overeenkomt met de som van de data. De volgende formules \cite{erkin:generating} tonen deze additieve homomorfe eigenschap bij additieve systemen op basis van vermenigvuldiging. De encryptie $\mathcal{E}$ en decryptie $\mathcal{D}$ van de berichten $m_1$ en $m_2$ gebeuren logischerwijs met de bij elkaar horende publieke en private sleutel.
+
+\begin{equation}\label{pearson}\mathcal{D}(\mathcal{E}(m_1).\mathcal{E}(m_2)) = m1 + m2
+\end{equation}
+Als gevolg hiervan kan ook de vermenigvuldiging berekend worden van de data met een niet ge\"encrypteerd getal.
+
+\begin{equation}\label{pearson}\mathcal{D}((\mathcal{E}(m))^a) = m.a
+\end{equation}
+De gebruikte systemen, Paillier en DGK, ondersteunen beide de additieve homomorfe eigenschap op basis van vermenigvuldiging.
+
+Voor de volledigheid is dit de formule voor multiplicatieve homomorfe systemen op basis van vermenigvuldiging.
+
+\begin{equation}\label{pearson}\mathcal{D}(\mathcal{E}(m_1).\mathcal{E}(m_2)) = m1 . m2
+\end{equation}
+\subsubsection{Een Pailliercryptosysteem}
+\label{paillier}
+De encryptie in een Pailliersysteem is op de volgende manier gedefinieerd \cite{erkin:generating}:
+
+\begin{equation}\label{pearson}\mathcal{E}(m,r) = g^m.r^n mod n^2
+\end{equation}
+
+Hier is n het product van p en q, twee grote priemgetallen. De publieke sleutel wordt gevormd door (n,g) en de private sleutel door (p,q). Het gebruik van de randomwaarde r zorgt ervoor dat het Pailliersysteem semantisch veilig is. Dit betekent dat elke encryptie van dezelfde plaintext nooit resulteert in dezelfde ciphertext. Deze eigenschap komt later van pas in de privacyvriendelijke oplossing.
+Zoals eerder vermeld ondersteunt het Pailliercryposysteem de additieve homomorfe eigenschap op basis van vermenigvuldiging. 
+\begin{comment}
+Deze eigenschap kan snel aangetoond worden. 
+\end{comment}
+\subsubsection{Een Damgard, Geisler en Kroigaard cryptosysteem (DGK)}
+\label{dgk}
+Het DGKsysteem ondersteunt net als Paillier de additieve homomorfe eigenschap op basis van vermenigvuldiging en is net als Paillier semantisch veilig. Voor hetzelfde veiligheidsniveau heeft het echter een kleinere berichtgrootte en het is dus effici\"enter dan Paillier.

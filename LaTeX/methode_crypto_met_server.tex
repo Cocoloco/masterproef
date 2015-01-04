@@ -1,0 +1,34 @@
+
+\subsection{Met behulp van cryptografische protocollen met server}
+\subsubsection{Aanpak met behulp van cryptografische protocollen door Erkin et al \cite{ErkinBVL11}.}
+\label{cryptoprotocollen}
+Deze aanpak voert de verschillende stappen in het collaborative filteringproces privacyvriendelijk uit met behulp van verschillende protocollen. Om deze protocollen te kunnen uitvoeren genereert elke gebruiker eerst een sleutelpaar voor een Paillier en een DGK-cryptosysteem. Een eerste stap in dit proces is het bepalen van gelijkaardige gebruikers. Dit gebeurt aan de hand van de gekende Pearson-correlatie op ratings van items in een bepaalde range R. De Pearson-correlatie berekent gelijkenis tussen twee gebruikers aan de hand van de cosinus tussen hun smaakvectoren. De ratings in de range R noemt men de voorkeurenvector . De Pearson-correlatie \eqref{pearson} kan in 2 delen worden opgedeeld\cite{erkin:generating}:
+
+\begin{equation}\label{pearson}sim_{A,B} = \frac{\sum_{j=0}^{R-1}(v_{(A,i)} - \bar{v}_A).(v_{(B,i)} - \bar{v}_B)}{\sqrt{\sum_{j=0}^{R-1} (v_{(A,j)} - \bar{v}_A)^2.\sum_{j=0}^{R-1} (v_{(B,j)} - \bar{v}_B)^2}} 
+\end{equation}
+
+\begin{equation}\label{similarity}sim_{A,B} = \sum_{i=0}^{R-1} C_{A,i}.C_{B,i} \end{equation}
+
+\begin{equation}\label{c_value}
+C_{X,i} = \frac{(v_{(X,i)} - \bar{v}_X)}{\sqrt{\sum_{j=0}^{R-1} (v_{(X,j)} - \bar{v}_X)^2}}\end{equation}
+Zo kunnen twee gebruikers apart de C-waarden berekenen. De gebruiker die aanbevelingen vraagt encrypteert zijn voorkeurenvector met zijn public key. Dit stuurt hij naar de server die dit op zijn beurt doorstuurt naar een andere gebruiker. Door middel van het Paillier cryptosysteem kan deze de waarden van zijn voorkeurenvector respectievelijk vermenigvuldigen met de waarden voor de zelfde items van de voorkeurenvector van de aanvrager.  Van al deze producten wordt de som genomen \eqref{similarity} zoals in de Pearsoncorrelatie. De som geeft de gelijkenis weer tussen de twee gebruikers die nog steeds is ge\"encrypteerd met de publieke sleutel van de aanvrager. Deze waarde wordt dan teruggestuurd naar de server. De server voegt de ontvangen gelijkeniswaarden allemaal samen in een vector en voert hierop dan een aangepast protocol met de aanvrager. Dit aangepast protocol maakt gebruik van een DGK cryptosysteem in plaats van een Paillier cryptosysteem voor effici\"entieredenen. Het resultaat is een geëncrypteerde vector van enen en nullen die aangeeft of  de gelijkeniswaarde tussen de aanvrager en de respectievelijke gebruiker boven een bepaalde ondergrens ligt. De server stuurt deze naar de gebruiker zodat hij zijn ratings kan vermenigvuldigen met deze waarde en terugsturen. Hierop maakt de server de som van de ratings over alle gelijkaardige gebruikers en stuurt deze naar de aanvrager die de som decrypteert en er een gemiddelde van berekent.
+
+Met behulp van dit protocol worden enkel de ratings van gelijkaardige gebruikers gebruikt. Geen enkele entiteit kan de gelijkenis tussen twee gebruikers bepalen.\\
+
+
+
+Belangrijke kenmerken :
+\begin{itemize}
+
+\item Berekeningen van de aanbevelingen gebeuren door de server en de client.
+\end{itemize}
+Voordelen : 
+\begin{itemize}
+\item Dankzij diverse cryptografische protocollen is dit een volledig privacyvriendelijke oplossing in een statische setting
+\end{itemize}
+Nadelen:
+\begin{itemize}
+\item Bij een dynamische userdatabase kan deze oplossing gegevens van de gebruikers lekken. Als een zelfde gebruiker tweemaal aanbevelingen vraagt met de tweede maal \'e\'en gebruiker meer kan hij afleiden of deze extra gebruiker een gelijkaardige smaak heeft als hijzelf, afhankelijk van of deze gebruiker een invloed heeft op zijn aanbevelingen of niet. Men spreekt over een "\emph{new group attack}" \cite{kononchuk2013privacy}.
+\item Cryptografie zorgt voor een overhead.
+
+\end{itemize}

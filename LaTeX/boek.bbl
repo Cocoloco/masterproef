@@ -1,0 +1,104 @@
+\begin{thebibliography}{10}
+
+\bibitem{ZErkinDyn}
+{\em Privacy-Preserving Recommender Systems in Dynamic Environments}, 11/2013
+  2013.
+
+\bibitem{CisseeThesis2009}
+Richard Ciss{\'e}e.
+\newblock {\em An agent-based approach for privacy-preserving information
+  filtering}.
+\newblock PhD thesis, 2009.
+
+\bibitem{CisseeAAP}
+Richard Ciss{\'e}e and Sahin Albayrak.
+\newblock An agent-based approach for privacy-preserving recommender systems.
+\newblock In {\em Proceedings of the 6th International Joint Conference on
+  Autonomous Agents and Multiagent Systems}, AAMAS '07, pages 182:1--182:8, New
+  York, NY, USA, 2007. ACM.
+
+\bibitem{ErkinBVL11}
+Zekeriya Erkin, Michael Beye, Thijs Veugen, and Reginald~L. Lagendijk.
+\newblock Efficiently computing private recommendations.
+\newblock In {\em ICASSP}, pages 5864--5867. IEEE, 2011.
+
+\bibitem{facerecog}
+Zekeriya Erkin, Martin Franz, Jorge Guajardo, Stefan Katzenbeisser, Inald
+  Lagendijk, and Tomas Toft.
+\newblock Privacy-preserving face recognition.
+\newblock In {\em Proceedings of the 9th International Symposium on Privacy
+  Enhancing Technologies}, PETS '09, pages 235--253, Berlin, Heidelberg, 2009.
+  Springer-Verlag.
+
+\bibitem{erkin:generating}
+Zekeriya Erkin, Thijs Veugen, Tomas Toft, and Reginald~L. Lagendijk.
+\newblock Generating private recommendations efficiently using homomorphic
+  encryption and data packing.
+\newblock {\em IEEE Transactions on Information Forensics and Security}, pages
+  1053--1066, 2012.
+
+\bibitem{hoens2010private}
+T.~Ryan Hoens, Marina Blanton, and Nitesh~V. Chawla.
+\newblock A private and reliable recommendation system for social networks.
+\newblock In {\em Proceedings of the 2010 IEEE Second International Conference
+  on Social Computing}, SOCIALCOM '10, pages 816--825, Washington, DC, USA,
+  2010. IEEE Computer Society.
+
+\bibitem{pirs}
+ArjanJ.P. Jeckmans, Michael Beye, Zekeriya Erkin, Pieter Hartel, ReginaldL.
+  Lagendijk, and Qiang Tang.
+\newblock Privacy in recommender systems.
+\newblock In Naeem Ramzan, Roelof van Zwol, Jong-Seok Lee, Kai Clüver, and
+  Xian-Sheng Hua, editors, {\em Social Media Retrieval}, Computer
+  Communications and Networks, pages 263--281. Springer London, 2013.
+
+\bibitem{kononchuk2013privacy}
+Dmitry Kononchuk, Zekeriya Erkin, Jan~CA van~der Lubbe, and Reginald~L
+  Lagendijk.
+\newblock Privacy-preserving user data oriented services for groups with
+  dynamic participation.
+\newblock In {\em Computer Security--ESORICS 2013}, pages 418--442. Springer
+  Berlin Heidelberg, 2013.
+
+\bibitem{lath}
+Neal Lathia, Stephen Hailes, and Licia Capra.
+\newblock Private distributed collaborative filtering using estimated
+  concordance measures.
+\newblock In {\em Proceedings of the 2007 ACM Conference on Recommender
+  Systems}, RecSys '07, pages 1--8, New York, NY, USA, 2007. ACM.
+
+\bibitem{Linton00owl}
+Frank Linton, Deborah Joy, Hans peter Schaefer, and Andrew Charron.
+\newblock Owl: A recommender system for organization-wide learning, 2000.
+
+\bibitem{privdisc}
+Ikmal Hisham Md~Tah Mohd. Ikhsan Md.~Raus and Saadiah Yahya.
+\newblock Personal information disclosure in facebook: Theawareness of uitm
+  pahang students.
+\newblock International Journal of Future Computer and Communication, 2013.
+
+\bibitem{Narayanan2008}
+Arvind Narayanan and Vitaly Shmatikov.
+\newblock Robust de-anonymization of large sparse datasets.
+\newblock In {\em Proceedings of the 2008 IEEE Symposium on Security and
+  Privacy}, SP '08, pages 111--125, Washington, DC, USA, 2008. IEEE Computer
+  Society.
+
+\bibitem{Polat:2005:SCF:1066677.1066860}
+Huseyin Polat and Wenliang Du.
+\newblock Svd-based collaborative filtering with privacy.
+\newblock In {\em Proceedings of the 2005 ACM Symposium on Applied Computing},
+  SAC '05, pages 791--795, New York, NY, USA, 2005. ACM.
+
+\bibitem{LCA-CONF-2009-014}
+Reza Shokri, Pedram Pedarsani, George Theodorakopoulos, and Jean-Pierre Hubaux.
+\newblock Preserving {P}rivacy in {C}ollaborative {F}iltering through
+  {D}istributed {A}ggregation of {O}ffline {P}rofiles.
+\newblock In {\em The 3rd {ACM} {C}onference on {R}ecommender {S}ystems
+  ({R}ec{S}ys)}. ACM, 2009.
+
+\bibitem{VeugenEID}
+Thijs Veugen.
+\newblock Encrypted integer division, 2010.
+
+\end{thebibliography}

@@ -1,0 +1,7 @@
+\subsection{Berekenen van gelijkeniswaarden tussen gebruikers}
+\label{similarities}
+
+Het berekenen van gelijkeniswaarden gebeurt zoals eerder aangegeven door de Pearson-co\"efficient. Aangezien de ge\"encrypteerde C-waarden hiervoor al op de clientapplicatie worden berekend hoeven we enkel nog het scalair product te nemen van deze waarden met de formule $sim_{A,B} = \sum_{i=0}^{R-1} C_{A,i}.C_{B,i}$ uit paragraaf \ref{cryptoprotocollen}. Ge\"encrypteerd met de publieke sleutel van de controleserver wordt dit (naar \cite{ZErkinDyn}):
+\begin{equation}\label{similarity}[sim_{A,B}]_2 = \prod_{i=0}^{R-1} [C_{A,i}]_2 \otimes [C_{B,i}]_2 \end{equation}
+
+De som wordt omgezet in een product dankzij de homomorfe eigenschappen van het Pailliersysteem (\ref{paillier}). Het product tussen twee ge\"encrypteerde waarden uitrekenen, hier aangegeven met  $\otimes$, is niet zo eenvoudig. Hiervoor wordt dezelfde werkwijze gebruikt als in het multiplicatieprotocol (\ref{multiplication}).
