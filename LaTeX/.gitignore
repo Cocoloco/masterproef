@@ -3,5 +3,6 @@
 *.dvi
 *.bbl
 *.blg
+boek.toc
 boek.pdf
 boek.synctex.gz
