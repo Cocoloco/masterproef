@@ -24,9 +24,12 @@ Deze aanbevelingssystemen maken gebruik van de vriendschapsbanden van een sociaa
 Zoals de naam aangeeft worden hier verschillende aanbevelingssystemen samen gecombineerd. Dit heeft als doel betere aanbevelingen te maken en de nadelen van de onderliggende systemen weg te werken.
 
 \subsection{Singular Value Decomposition}
-Singular Value Decomposition of singulierewaardenontbinding is een wiskundige techniek die toelaat een $m \times n$ matrix A op te splitsen in een product van drie matrices respectievelijk een $m \times m$ matrix U, een $m \times r$ matrix $\sum$ met de singuliere waarden op de diagonaal en een $r \times r$ matrix V. 
-Deze techniek kan uitgevoerd worden op een traditionele userratingmatrix om de smaken van de gebruikers niet vast te leggen als in scores op bepaalde trefwoorden maar eerder in een aantal dimensies die verschillende trefwoorden overstijgen. De singuliere waarden op de diagonaal van $\sum$ geven de belangrijkheid van deze bepaalde dimensie aan. Een deel van deze waarden is dicht bij 0 en dus kunnen deze  dimensies verwaarloosd worden en de matrix verkleind worden naar k rijen en kolommen. De scores in de U en de V matrix op deze verwaarloosde dimensies kunnen ook weggelaten worden. Dit zorgt ervoor dat de data compacter kan worden bijgehouden en voor minder computationeel werk. Hierbij worden U de user-feature matrix en V de item-feature matrix genoemd. 
-\subsection{Evaluatie aanbevelingssystemen}
+Singular Value Decomposition of singulierewaardenontbinding is een wiskundige techniek die toelaat aanbevelingen bij  collaborative filtering sneller te berekenen. De wiskundige basis ligt in de mogelijkheid een $m \times n$ matrix A op te splitsen in een product van drie matrices, respectievelijk een $m \times m$ matrix U, een $m \times r$ matrix $\sum$ met de singuliere waarden op de diagonaal en een $r \times r$ matrix V. 
+ De singuliere waarden op de diagonaal van $\sum$ geven de belangrijkheid van deze bepaalde dimensie aan. Een deel van deze waarden is dicht bij 0 en dus kunnen deze  dimensies verwaarloosd worden en de matrix verkleind worden naar k rijen en kolommen. De scores in de U en de V matrix op deze verwaarloosde dimensies kunnen ook weggelaten worden. 
+Deze techniek kan uitgevoerd worden op een traditionele userratingmatrix. Zonder SVD worden smaken van gebruikers vastgelegd als scores op bepaalde trefwoorden, zoals bij films bijvoorbeeld 5 \% comedie. Met SVD wordt de smaak van een gebruiker uitgedrukt in een kleiner aantal dimensies die een combinatie zijn van verschillende trefwoorden zonder verlies van veel informatie. Dit zorgt ervoor dat de data compacter kan worden bijgehouden en voor minder computationeel werk. Hierbij worden U de user-feature matrix en V de item-feature matrix genoemd.
+
+
+\section{Evaluatie aanbevelingssystemen}
 Een veelgebruikte basismetriek is Mean Absolute Error (MAE) of de gemiddelde absolute fout. Een rating voor een item wordt onzichtbaar gemaakt voor het systeem, waarna het systeem aangeeft welke score het zou geven op basis van alle andere bekende ratings. Het verschil tussen de vermomde score en de geraadde score is dus de fout. We berekenen het gemiddelde van de fouten voor elke rating en zo bekomen we het MAE. Een vergelijkbaar alternatief is de Mean Squared Error (MSE), die door kwadratering de grote fouten meer afstraft. De Root Mean Squared Error (RMSE) is hiervan de vierkantswortel zodat er een waarde bekomen wordt in de meer intu\"itieve originele schaal.
 \begin{equation}
 MAE = \frac{\sum_{ratings} (prediction - rating)}{\#ratings}
@@ -37,9 +40,6 @@ MAE = \frac{\sum_{ratings} (prediction - rating)}{\#ratings}
 RMSE = \sqrt{MSE}
 \end{equation}
 \textit{Precision} en \emph{recall} zijn ook veelgebruikte metrieken bij \emph{Information Retrieval} technieken. Ze focussen in tegenstelling tot de vorige metrieken niet op de nauwkeurigheid van een voorspellingswaarde. Precision en recall tonen respectievelijk hoeveel van de aanbevolen termen relevant zijn en het percentage van relevante items dat effectief wordt aanbevolen.
-\subsection{Privacygevoelige data}
-Veelgebruikte aanbevelingssystemen als content-based recommenders en collaborative filtering recommenders hebben toegang nodig tot persoonlijke voorkeuren om de berekeningen te kunnen doen. In de praktijk omvat dit expliciete data zoals commentaren, ratings, aankopen. Veel webapplicaties houden naast deze expliciete ook impliciete data bij zoals bezochte websites of bijvoorbeeld hoe lang een gebruiker naar een bepaald filmpje kijkt op Youtube. Ook knowledge-based recommenders verzamelen deze voorkeuren. Demografic recommenders hebben kennis nodig over de kenmerken van de gebruiker en social recommenders moeten natuurlijk weet hebben van het sociale netwerk.
-
 
 
 \section{Privacy}
@@ -84,7 +84,8 @@ De betrouwbaarheid van een aanbevelingssysteem leunt dicht aan bij de privacy. H
 \end{itemize}
  
   Het kan dat een service provider enkel deze items aanbeveelt die in stock zijn of waar het systeem het meest geld op verdient en niet deze die het interessantst zijn voor de gebruiker. 
-
+\section{Privacygevoelige data bij klassieke aanbevelingssystemen}
+Veelgebruikte aanbevelingssystemen als content-based recommenders en collaborative filtering recommenders hebben toegang nodig tot persoonlijke voorkeuren om de berekeningen te kunnen doen. In de praktijk omvat dit expliciete data zoals commentaren, ratings, aankopen. Veel webapplicaties houden naast deze expliciete ook impliciete data bij zoals bezochte websites of bijvoorbeeld hoe lang een gebruiker naar een bepaald filmpje kijkt op Youtube. Ook knowledge-based recommenders verzamelen deze voorkeuren. Demografic recommenders hebben kennis nodig over de kenmerken van de gebruiker en social recommenders moeten natuurlijk weet hebben van het sociale netwerk.
 \section{Privacyrisico's bij aanbevelingssystemen}
 \label{sec:risicos}
 \subsection{De gebruiker onderschat de omvang van de informatie die over hem wordt bijgehouden}
@@ -110,5 +111,5 @@ Uit cijfers van Hoofnagle et al. \cite{hoofnagle} kan ook opgemaakt worden dat b
 De wetten omtrent de privacy vormt de middengrond tussen enerzijds de bescherming van de gebruiker en anderzijds de bedrijven die gerichte marketing willen voeren. Of het nu de Europese richtlijnen zijn als de Europese wetgeving rond databescherming en de Europese wetgeving rond de e-Privacy of het Amerikaanse Federal Trade Commission Act, beide lopen achter de technologie aan. Wetten worden ook vaak pas ingevoerd  nadat er iets fout is gelopen en niet om inbreuken te voorkomen.
 
 \subsection{Privacyvriendelijke methodes}
-Een alternatief is natuurlijk om met behulp van privacyvriendelijke algoritmes aanbevelingen te berekenen. Hier wordt er in gegaan de volgende hoofdstukken.
+Een alternatief is natuurlijk om met behulp van privacyvriendelijke algoritmes aanbevelingen te berekenen. Hier wordt op in gegaan de volgende hoofdstukken.
 
