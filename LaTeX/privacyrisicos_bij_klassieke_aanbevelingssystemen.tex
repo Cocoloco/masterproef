@@ -38,7 +38,7 @@ RMSE = \sqrt{MSE}
 \end{equation}
 \textit{Precision} en \emph{recall} zijn ook veelgebruikte metrieken bij \emph{Information Retrieval} technieken. Ze focussen in tegenstelling tot de vorige metrieken niet op de nauwkeurigheid van een voorspellingswaarde. Precision en recall tonen respectievelijk hoeveel van de aanbevolen termen relevant zijn en het percentage van relevante items dat effectief wordt aanbevolen.
 \subsection{Privacygevoelige data}
-Veelgebruikte aanbevelingssystemen als content-based recommenders en collaborative filtering recommenders hebben toegang nodig tot persoonlijke voorkeuren om de berekeningen te kunnen doen. In de praktijk omvat dit expliciete data zoals commentaren, ratings of aankopen. Veel webapplicaties houden naast deze expliciete ook impliciete data bij zoals bezochte paginas of bijvoorbeeld hoe lang een gebruiker naar een bepaald filmpje kijkt op Youtube. Ook knowledge-based recommenders verzamelen deze voorkeuren. Demografic recommenders hebben kennis nodig over de kenmerken van de gebruiker en social recommenders moeten natuurlijk weet hebben van het sociale netwerk.
+Veelgebruikte aanbevelingssystemen als content-based recommenders en collaborative filtering recommenders hebben toegang nodig tot persoonlijke voorkeuren om de berekeningen te kunnen doen. In de praktijk omvat dit expliciete data zoals commentaren, ratings, aankopen. Veel webapplicaties houden naast deze expliciete ook impliciete data bij zoals bezochte websites of bijvoorbeeld hoe lang een gebruiker naar een bepaald filmpje kijkt op Youtube. Ook knowledge-based recommenders verzamelen deze voorkeuren. Demografic recommenders hebben kennis nodig over de kenmerken van de gebruiker en social recommenders moeten natuurlijk weet hebben van het sociale netwerk.
 
 
 
@@ -88,7 +88,7 @@ De betrouwbaarheid van een aanbevelingssysteem leunt dicht aan bij de privacy. H
 \section{Privacyrisico's bij aanbevelingssystemen}
 \label{sec:risicos}
 \subsection{De gebruiker onderschat de omvang van de informatie die over hem wordt bijgehouden}
-Een gebruiker is zich niet altijd bewust van de omvang van de data die van hem wordt bijgehouden\cite{pirs}. Dit is waarschijnlijk omdat weinig gebruikers de privacyvoorwaarden lezen vooraleer een applicatie te starten. Uit een studie \cite{privdisc} bij 274 studenten bleek bijvoorbeeld 55.1\% de Facebook privacy policy niet gelezen te hebben. De reden hiervoor was grotendeels omdat de studenten het te veel moeite vonden (43.4\%) of de policy moeilijk te begrijpen vonden(33,6\%). Hoofnagle et al. verrichte in \cite{hoofnagle} een studie over alle leeftijdsgroepen heen die ook het vermoeden bevestigt. Er is ook gewoonlijk weinig keuze, indien men de voorwaarden niet aanvaardt wordt de toegang tot de applicatie gewoonweg ontzegd. 
+Van een smaakprofiel aan de hand van likes, het bijhouden van de operating systemversie met behulp van \emph{third-party} analytische tools tot het inkijken van de bezochte websites, een gebruiker is zich niet altijd bewust van de omvang van de data die van hem wordt bijgehouden\cite{pirs}. Dit is waarschijnlijk ook deels te wijten aan dat weinig gebruikers de privacyvoorwaarden lezen vooraleer een applicatie te starten. Uit een studie \cite{privdisc} bij 274 studenten bleek bijvoorbeeld 55.1\% de Facebook privacy policy niet gelezen te hebben. Hoofnagle et al. verrichte in \cite{hoofnagle} een studie over alle leeftijdsgroepen heen die hetzelfde vermoeden bevestigt. Hier blijkt  50\% van een groep van 975 personen nooit of bijna nooit de privacy policies op websites te lezen. Er is ook gewoonlijk weinig keuze, indien men de voorwaarden niet aanvaardt wordt de toegang tot de applicatie gewoonweg ontzegd. 
 \subsection{Onterecht vertrouwen in de service provider}
 \label{onterecht_vertrouwen}
 \subsubsection{Het verkopen van data}
@@ -102,8 +102,13 @@ Informatie op het internet is moeilijk te verwijderen. De service provider vermo
 \section{Preventie van inbreuken op de privacy}
 Nu er inzicht verkregen is welke risico's de gebruiker loopt kan er onderzocht worden wat er kan doen gebeuren inbreuken op zijn privacy te voorkomen.
 
+\subsection{De gebruiker informeren}
 
-\input{prev}
+Uit cijfers van Hoofnagle et al. \cite{hoofnagle} kan ook opgemaakt worden dat bij 55\% van de 975 ondervraagden de bezorgdheid rond online privacy de laatste vijf jaar is gestegen. Uit deze groep geeft 48\% aan dat de hoofdreden hiervoor is dat ze meer over de risico's ervan weten. De gebruiker informeren zou dus een positief effect kunnen hebben op zijn bezorgdheid en zijn privacy-eisen. Anderzijds gaf 77\% van de studenten in \cite{privdisc} aan dat de reden waarom de privacy policies niet gelezen werden was omdat de studenten het te veel moeite vonden of de policy moeilijk te begrijpen was. Dit toont aan dat initiatieven als "The Platform for Privacy Preferences (http://www.w3.org/P3P/)" nuttig zijn. Dit project zorgt voor een gestandaardiseerd formaat waarin websites en applicaties hun privacy policy kunnen defini\"eren. Dit formaat kan dan eenvoudig gelezen worden door een applicatie of plug-in aan de clientkant. Deze applicatie kan dan deze informatie op een gebruiksvriendelijke en begrijpbare manier tonen en eventueel op basis ervan indien de gebruiker dit wenst geautomatiseerde beslissingen nemen in zijn plaats. Zo hoeft de user de policies niet altijd te lezen. Alternatief kan de gebruiker ook bewuster gemaakt worden van de risico's die hij loopt door de privacy-informatie prominenter te tonen. Een studie van Tsai et Al. \cite{tsaitsai} toont aan dat users indien ze privacy-informatie prominent aanwezig zien meer geneigd zijn om van betrouwbaardere sites te kopen die duurder mogen zijn terwijl ze anders enkel keken naar de kleinste prijs. 
 
+\subsection{Privacywetten}
+De wetten omtrent de privacy vormt de middengrond tussen enerzijds de bescherming van de gebruiker en anderzijds de bedrijven die gerichte marketing willen voeren. Of het nu de Europese richtlijnen zijn als de Europese wetgeving rond databescherming en de Europese wetgeving rond de e-Privacy of het Amerikaanse Federal Trade Commission Act, beide lopen achter de technologie aan. Wetten worden ook vaak pas ingevoerd  nadat er iets fout is gelopen en niet om inbreuken te voorkomen.
 
+\subsection{Privacyvriendelijke methodes}
+Een alternatief is natuurlijk om met behulp van privacyvriendelijke algoritmes aanbevelingen te berekenen. Hier wordt er in gegaan de volgende hoofdstukken.
 
