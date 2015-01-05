@@ -24,9 +24,18 @@ Deze aanbevelingssystemen maken gebruik van de vriendschapsbanden van een sociaa
 Zoals de naam aangeeft worden hier verschillende aanbevelingssystemen samen gecombineerd. Dit heeft als doel betere aanbevelingen te maken en de nadelen van de onderliggende systemen weg te werken.
 
 \subsection{Singular Value Decomposition}
-Singular Value Decomposition of singulierewaardenontbinding is een wiskundige techniek die toelaat aanbevelingen bij  collaborative filtering sneller te berekenen. De wiskundige basis ligt in de mogelijkheid een $m \times n$ matrix A op te splitsen in een product van drie matrices, respectievelijk een $m \times m$ matrix U, een $m \times r$ matrix $\sum$ met de singuliere waarden op de diagonaal en een $r \times r$ matrix V. 
+Singular Value Decomposition of singulierewaardenontbinding is een wiskundige techniek die toelaat aanbevelingen bij  collaborative filtering sneller te berekenen. De wiskundige basis ligt in de mogelijkheid een $m \times n$ matrix A op te splitsen in een product van drie matrices, respectievelijk een $m \times r$ matrix U, een $r \times r$ matrix $\sum$ met de singuliere waarden op de diagonaal en een $n \times r$ matrix V. 
+
+\begin{figure}[htpb]   
+    \label{Figuur::svd}      
+  \begin{center}    
+ \includegraphics[scale=0.3]{fig/svd}    
+  \end{center}   
+    
+   \end{figure}
+
  De singuliere waarden op de diagonaal van $\sum$ geven de belangrijkheid van deze bepaalde dimensie aan. Een deel van deze waarden is dicht bij 0 en dus kunnen deze  dimensies verwaarloosd worden en de matrix verkleind worden naar k rijen en kolommen. De scores in de U en de V matrix op deze verwaarloosde dimensies kunnen ook weggelaten worden. 
-Deze techniek kan uitgevoerd worden op een traditionele userratingmatrix. Zonder SVD worden smaken van gebruikers vastgelegd als scores op bepaalde trefwoorden, zoals bij films bijvoorbeeld 5 \% comedie. Met SVD wordt de smaak van een gebruiker uitgedrukt in een kleiner aantal dimensies die een combinatie zijn van verschillende trefwoorden zonder verlies van veel informatie. Dit zorgt ervoor dat de data compacter kan worden bijgehouden en voor minder computationeel werk. Hierbij worden U de user-feature matrix en V de item-feature matrix genoemd.
+Deze techniek kan uitgevoerd worden op een traditionele userratingmatrix. Zonder SVD worden smaken van gebruikers vastgelegd als scores op bepaalde trefwoorden, zoals bij films bijvoorbeeld 5 \% comedie. Met SVD wordt de smaak van een gebruiker uitgedrukt in een kleiner aantal dimensies die een combinatie zijn van verschillende trefwoorden zonder verlies van veel informatie. Dit zorgt ervoor dat de data compacter kan worden bijgehouden en het algoritme minder computationeel werk heeft. Hierbij worden U de user-feature matrix en V de item-feature matrix genoemd.
 
 
 \section{Evaluatie aanbevelingssystemen}
