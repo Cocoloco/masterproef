@@ -27,16 +27,17 @@ public DeltaDAO exchangeDeltas(DeltaDAO d) throws Exception {...
     for(int j=0;j< d.getDeltas().size();j++){
     // De controleserver decrypteert de waarde van de bit + de toegevoegde 
     // randomwaarde door de recommenderserver.
-       	EncryptedInteger inBit = new EncryptedInteger(PaillierResource.pubKey,d.getDeltas().get(j));
+       	EncryptedInteger inBit = new EncryptedInteger(
+       		PaillierResource.pubKey,d.getDeltas().get(j));
        	BigInteger decryptInBit =  inBit.decrypt(PaillierResource.privKey);
     // De controleserver cree\"ert een EncryptedIntegerobject van de meegestuurde 
     // ge\"encrypteerde randomwaarde en vermenigvuldigt deze met -1 via Paillier.
     		EncryptedInteger randEncRec = new 
         		EncryptedInteger(pubKeyRecommenderServer,d.getRandoms().get(j));
       	randEncRec.multiply(new BigInteger("-1"));
-    // De controleserver encrypteert de gedecrypteerde waarde met de publieke sleutel van 
-    // de recommenderserver zodat hij beide kan samentellen en de ge\"encrypteerde 
-    // versie van de originele bit verkrijgt.
+    // De controleserver encrypteert de gedecrypteerde waarde met de publieke sleutel
+    // van de recommenderserver zodat hij beide kan samentellen en 
+    // de ge\"encrypteerde versie van de originele bit verkrijgt.
       	EncryptedInteger bEncRec = new EncryptedInteger(decryptInBit,
       		pubKeyRecommenderServer);
         	bEncRec= bEncRec.add(randEncRec);
