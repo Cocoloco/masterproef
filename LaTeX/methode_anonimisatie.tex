@@ -11,6 +11,14 @@ Het systeem houdt per entiteit rekening met het respectievelijk privacy aspect. 
 
 Het basisidee is dat de user en provider entiteiten hun data sturen naar de filter entiteit.  De gebruikersdata bestaat uit zijn ratings. De data van de provider bestaat uit een enorme hoeveelheid items, enkel relevante items worden naar de filter gestuurd. Deze filter entiteit berekent de aanbevelingen en verwijdert private data van beide entiteiten. De communicatie tussen de filter entiteit en de user en provider entiteiten gebeurt via een relay entiteit. Die zorgt ervoor dat de zoekopdrachten naar de provider anoniem gebeuren en dus niet gelinkt kunnen worden aan de filterentiteit die tijdelijk de persoonlijke data bevat.
 
+\begin{figure}[htpb]   
+    \label{Figuur::anon}      
+  \begin{center}    
+ \includegraphics[scale=0.25]{fig/anon}    
+  \end{center}   
+  \caption{De communicatie tussen de entiteiten, naar \cite{CisseeAAP}. De TFE of \emph{Temporary Filter Entity} handelt de communicatie af voor de filterentiteit.}  
+   \end{figure}
+
 In dit artikel kan de op agents gebaseerde aanpak enkel gebruikt worden voor content-based filtering of knowledge-based filtering. Om ook user-user collaborative filtering toe te laten kan  een match-maker module ge\"integreerd worden, beschreven in \cite{CisseeThesis2009}. Hier heeft de provider entiteit de extra taak om de gelijkenissen tussen gebruikers te bepalen. De privacy van de gebruiker wil men garanderen door met pseudoniemen te werken aan de kant van de provider en anonieme communicatie van de provider naar de user toe.\\\\
 Belangrijke kenmerken : 
 \begin{itemize}

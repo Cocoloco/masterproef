@@ -9,6 +9,8 @@ De nauwkeurigheid werd onderzocht door de MAE-waarden en RMSE-waarden te bereken
 \item De gebruiker het item zelf heeft beoordeeld. Zo beschikken we over een waarde om de fout op te berekenen op het verwachtte aantal sterren. De aanbevelingen worden natuurlijk berekend zonder de kennis van de echte beoordeelde waarde.
 \item Er beoordelingen van dat bepaald item van andere gelijkaardige gebruikers gevonden werden. Hoe hoger de drempelwaarde, hoe minder gebruikers worden opgenomen in het protocol. Indien geen enkele van deze gebruikers deze film beoordeeld heeft, kunnen we geen gemiddelde nemen en beschouwen deze aanbeveling als gefaald.
 \end{enumerate}
+
+\pagebreak
 De bedoeling hiervan is om een idee te hebben welke drempelwaarde het best scoort bij onze dataset. We bepalen eerst de MAE, MSE en RMSE-waarden samen met nog een paar andere nuttige waarden:
 
 
@@ -22,7 +24,7 @@ De bedoeling hiervan is om een idee te hebben welke drempelwaarde het best scoor
 \begin{figure}[htpb]   
     \label{Figuur::mse_rmse}      
   \begin{center}    
- \inclu0.79640.7964degraphics[width=\textwidth]{fig/mse_rmse}    
+ \includegraphics[width=\textwidth]{fig/mse_rmse}    
   \end{center}   
 \end{figure}
    
@@ -42,4 +44,5 @@ De bedoeling hiervan is om een idee te hebben welke drempelwaarde het best scoor
 Voor drempelwaarden groter dan 0.5 worden de aanbevelingen berekend op gemiddeld minder dan 10 beoordelingen van andere gebruikers, deze waarden zijn dus niet echt nuttig. Deze waarden leveren logischerwijs ook enorm veel gefaalde aanbevelingen. In de buurt van een drempelwaarde 0,34 \`a 0,35 worden de kleinste MAE, MSE en RMSEwaarden opgemeten. Met dit gegeven berekenden we de MAE, MSE en RMSE nogmaals voor een drempelwaarde van 0,345, ditmaal voor 10.000 beoordelingen. We bekwamen een MAE van 0,8057, een MSE van 1,0332 en een RMSE van 1,016. Deze MAE-waarde ligt vlakbij de MAE-waarde 0.7964 van de privacyvriendelijke oplossing uit "Svd-based collaborative filtering with privacy\cite{Polat:2005:SCF:1066677.1066860}" besproken in \ref{randomisatie}. De MAE voor een niet-privacyvriendelijke oplossing op deze dataset is 0,7146. Beide waarden werd berekend op identiek dezelfde dataset. De verschil van de bekomen MAE 0,8057 met de MAE van de niet-privacyvriendelijke methode 0,7146 is dus 0.0911 ster. Er wordt dus niet veel aan nauwkeurigheid ingeboet.
 \subsection{Performantie}
 \subsubsection{Het mobiele device}
+
 \subsubsection{De aanbevelingsserver en de controleserver}
