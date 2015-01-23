@@ -9,20 +9,8 @@ Na het meerdere keren aanroepen van het aanbevelingssysteem, zou het systeem of 
 public DeltaDAO exchangeDeltas(DeltaDAO d) throws Exception {...
     //Afhankelijk van het procent van de gebruikers worden er bits bepaald 
     // en door elkaar geschud
-	Integer numberOnes = (int)(d.getDeltas().size()*
-		((userPercent+0.0)/100));
-    	BigInteger[] bi =new BigInteger[d.getDeltas().size()];
-    	int i=0;
-    	while(i<numberOnes){
-    		bi[i] = BigInteger.ONE;
-        i++;
-   	}
-    	while(i<bi.length){
-        bi[i] = BigInteger.ZERO;
-        i++;
-    }
+	...
     	shuffleArray(bi);
-   	Random rnd =new Random();
     	List<BigInteger> rands = new ArrayList<BigInteger>();
     for(int j=0;j< d.getDeltas().size();j++){
     // De controleserver decrypteert de waarde van de bit + de toegevoegde 
@@ -45,7 +33,7 @@ public DeltaDAO exchangeDeltas(DeltaDAO d) throws Exception {...
     // voegt er een nieuwe randomwaarde bij om een tweede maal van cryptosysteem 
     // te wisselen.
        	bEncRec = bEncRec.multiply(bi[j]);
-        BigInteger random = new BigInteger(10,rnd);
+        BigInteger random = new BigInteger(10,random);
        	EncryptedInteger rEnc = new EncryptedInteger(random,pubKeyRecommenderServer);
         	bEncRec = bEncRec.add(rEnc);
        	d.getDeltas().set(j, bEncRec.getCipherVal());

@@ -16,7 +16,7 @@ Bij user-user collaborative recommenders wordt de smaak van gebruikers vergeleke
 \subsubsection{Item-Item Collaborative recommenders}
 Om een score voor een item te vinden voor een gebruiker wordt eerst gekeken naar de items waar hij wel een rating voor heeft. Indien het gezochte item volgens andere gebruikers gelijkaardig is (een gelijkaardige score heeft voor hen) aan wel beoordeelde items, neemt men het gewogen gemiddelde van de ratings van deze items.
 \subsection{Andere aanbevelingssystemen}
-\subsubsection{Demografic recommenders}
+\subsubsection{Demographic recommenders}
 Als een persoonlijke voorkeur niet gekend is wordt afgegaan op kenmerken als leeftijd, geslacht en land van herkomst om aanbevelingen te genereren op basis van een stereotype.
 \subsubsection{Social recommenders}
 Deze aanbevelingssystemen maken gebruik van de vriendschapsbanden van een sociaal netwerk omdat aangenomen wordt dat vrienden gelijkaardige interesses hebben.
@@ -24,7 +24,7 @@ Deze aanbevelingssystemen maken gebruik van de vriendschapsbanden van een sociaa
 Zoals de naam aangeeft worden hier verschillende aanbevelingssystemen samen gecombineerd. Dit heeft als doel betere aanbevelingen te maken en de nadelen van de onderliggende systemen weg te werken.
 
 \subsection{Singular Value Decomposition}
-Singular Value Decomposition of singulierewaardenontbinding is een wiskundige techniek die toelaat aanbevelingen bij  collaborative filtering sneller te berekenen. De wiskundige basis ligt in de mogelijkheid een $m \times n$ matrix A op te splitsen in een product van drie matrices, respectievelijk een $m \times r$ matrix U, een $r \times r$ matrix $\sum$ met de singuliere waarden op de diagonaal en een $n \times r$ matrix V. 
+Singular Value Decomposition of singulierewaardenontbinding is een wiskundige techniek die toelaat aanbevelingen bij  collaborative filtering sneller te berekenen. Deze techniek kan uitgevoerd worden op een traditionele userratingmatrix. De wiskundige basis ligt in de mogelijkheid een $m \times n$ matrix A op te splitsen in een product van drie matrices, respectievelijk een $m \times r$ matrix U, een $r \times r$ matrix $\sum$ met de singuliere waarden op de diagonaal en een $n \times r$ matrix V. Hierbij worden U de user-feature matrix en V de item-feature matrix genoemd.
 
 \begin{figure}[htpb]   
     \label{Figuur::svd}      
@@ -35,7 +35,7 @@ Singular Value Decomposition of singulierewaardenontbinding is een wiskundige te
    \end{figure}
 
  De singuliere waarden op de diagonaal van $\sum$ geven de belangrijkheid van deze bepaalde dimensie aan. Een deel van deze waarden is dicht bij 0 en dus kunnen deze  dimensies verwaarloosd worden en de matrix verkleind worden naar k rijen en kolommen. De scores in de U en de V matrix op deze verwaarloosde dimensies kunnen ook weggelaten worden. 
-Deze techniek kan uitgevoerd worden op een traditionele userratingmatrix. Zonder SVD worden smaken van gebruikers vastgelegd als scores op bepaalde trefwoorden, zoals bij films bijvoorbeeld 5 \% comedie. Met SVD wordt de smaak van een gebruiker uitgedrukt in een kleiner aantal dimensies die een combinatie zijn van verschillende trefwoorden zonder verlies van veel informatie. Dit zorgt ervoor dat de data compacter kan worden bijgehouden en het algoritme minder computationeel werk heeft. Hierbij worden U de user-feature matrix en V de item-feature matrix genoemd.
+ Zonder SVD worden smaken van gebruikers vastgelegd als scores op bepaalde trefwoorden, zoals bij films bijvoorbeeld 5 \% comedie. Met SVD wordt de smaak van een gebruiker uitgedrukt in een kleiner aantal dimensies die een combinatie zijn van verschillende trefwoorden zonder verlies van veel informatie. Dit zorgt ervoor dat de data compacter kan worden bijgehouden en het algoritme minder computationeel werk heeft. 
 
 
 \section{Evaluatie aanbevelingssystemen}
@@ -54,19 +54,8 @@ RMSE = \sqrt{MSE}
 
 
 \section{Betrouwbaarheid}
-De betrouwbaarheid van een aanbevelingssysteem leunt dicht aan bij de privacy. Hier kunnen we de volgende vragen stellen : 
-
-\begin{itemize}
- 
-\item Is het systeem voldoende beschermd tegen aanvallen van buitenaf?
-\end{itemize}
- Het aanbevelingssysteem moet allereerst bestand zijn tegen aanvallen van hackers die private informatie willen bemachtigen. In het verleden is er sprake geweest van buitenstaanders die ratings manipuleerden en extra gebruikersprofielen aanmaakten om extra informatie in te winnen over het gedrag van anderen. Een voorbeeld hiervan is een vroege aanval die de correlatieco\"efficient van Pearson misbruikte. De aanval maakte gebruik van het feit dat de co\"efficient \'e\'en is als twee gebruikers identiek dezelfde ratings hebben. Er werd met behulp van een beetje informatie over de gebruiker een valse account aangemaakt waarmee de co\"efficient \'e\'en werd, zo kon informatie achterhaald worden van de gebruiker. Deze aanvallen kunnnen bemoeilijkt worden door een minder transparant algoritme te gebruiken dat bijvoorbeeld gebruik maakt van Singular Value Decomposition. \\Daarbuiten moet het systeem ook voorkomen dat kwaadwillige gebruikers meerdere accounts aanmaken met als doel bepaalde items te promoten of in de vergetelheid te doen belanden. 
- 
- \begin{itemize}
-\item Beveelt het systeem de beste items wel aan?
-\end{itemize}
- 
-  Het kan dat een service provider enkel deze items aanbeveelt die in stock zijn of waar het systeem het meest geld op verdient en niet deze die het interessantst zijn voor de gebruiker. 
+De betrouwbaarheid van een aanbevelingssysteem leunt dicht aan bij de privacy. Hier kunnen we de volgende vragen stellen :\\ \emph{Is het systeem voldoende beschermd tegen aanvallen van buitenaf?}\\
+ Het aanbevelingssysteem moet allereerst bestand zijn tegen aanvallen van hackers die private informatie willen bemachtigen. In het verleden is er sprake geweest van buitenstaanders die ratings manipuleerden en extra gebruikersprofielen aanmaakten om extra informatie in te winnen over het gedrag van anderen. Een voorbeeld hiervan is een vroege aanval die de correlatieco\"efficient van Pearson misbruikte. De aanval maakte gebruik van het feit dat de co\"efficient \'e\'en is als twee gebruikers identiek dezelfde ratings hebben. Er werd met behulp van een beetje informatie over de gebruiker een valse account aangemaakt waarmee de co\"efficient \'e\'en werd, zo kon informatie achterhaald worden van de gebruiker. Deze aanvallen kunnnen bemoeilijkt worden door een minder transparant algoritme te gebruiken dat bijvoorbeeld gebruik maakt van Singular Value Decomposition. \\Daarbuiten moet het systeem ook voorkomen dat kwaadwillige gebruikers meerdere accounts aanmaken met als doel bepaalde items te promoten of in de vergetelheid te doen belanden. \\ \emph{ Beveelt het systeem wel de beste items  aan?}\\ Het kan dat een service provider enkel deze items aanbeveelt die in stock zijn of waar het systeem het meest geld op verdient en niet deze die het interessantst zijn voor de gebruiker. 
   
  
 \section{Privacy}
@@ -74,27 +63,30 @@ De betrouwbaarheid van een aanbevelingssysteem leunt dicht aan bij de privacy. H
 Zoals eerder gezegd bestaat er een wisselwerking tussen privacy en accuraatheid van de aanbevelingen. Hier gaan we even in op wat men precies bedoelt met privacy. Privacy op het internet betekent privacy van informatie. In de literatuur verwijst men vaak naar de definitie van het Information Infrastructure Task Force (IITF).
 
  \begin{quotation}
-"Privacy van informatie is het recht van een individu om controle uit te oefenen op de voorwaarden waaronder zijn persoonlijke informatie verzameld, gebruikt of bekendgemaakt wordt." \\-- Information Infrastructure Task Force \cite{pirs}
+\emph{"Privacy van informatie is het recht van een individu om controle uit te oefenen op de voorwaarden waaronder zijn persoonlijke informatie verzameld, gebruikt of bekendgemaakt wordt."} \\-- Information Infrastructure Task Force \cite{pirs}
  \end{quotation}
 Informatie wordt door een individu altijd gedeeld binnen een bepaalde \textit{scope}. Een scope wordt afgebakend door de grootte van het publiek, de manier waarop de informatie gebruikt mag worden en hoe lang dit mag.  Privacy betekent in deze context dus de informatie in dezelfde scope te houden als vooropgesteld door de persoon die informatie verstrekte \cite{pirs}.\\
 Privacy van aanbevelingssystemen kan worden opgedeeld in twee soorten. Er is \textit{user-user privacy}, met betrekking tot de privacy tussen gebruikers onderling. Bij user-user privacy gaat het om wat een gebruiker online allemaal kan te weten komen over het gedrag van andere gebruikers. Sommige websites tonen de ratings en persoonlijke voorkeuren publiek maar bij andere sites is de vooropgestelde scope veel kleiner en deze houden persoonlijke voorkeuren priv\'e of onder vrienden.  
 
-\begin{figure}[htpb]   
-    \label{Figuur::usersystemprivacy}      
-  \begin{center}    
- \includegraphics[scale=0.6,keepaspectratio]{fig/user-user-system-privacy}    
-  \end{center}     
-   \end{figure}
+
+
+\begin{center}
+\centering 
+\includegraphics[scale=0.6,keepaspectratio]{fig/user-user-system-privacy}  
+
+    \label{Figuur::usersystemprivacy} 
+ 
+\end{center}
    
 In tegenstelling tot sociale netwerken ligt bij aanbevelingssystemen het grootste probleem bij \textit{user-system privacy}. User-system privacy heeft betrekking tot de privacy kwesties tussen de gebruikers en de service provider. Een ander concept in privacy is \emph{deniability of preferences}, wat betekent dat je als gebruiker de mogelijkheid hebt om je eigen voorkeuren te ontkennen. Er is dus geen zekerheid voor een partij om de link te leggen tussen jou en je ratings.
 
-\begin{figure}[htpb]   
-    \label{Figuur::randomisatie}      
-  \begin{center}    
- \includegraphics[scale=0.5]{fig/klassiek_systeem}    
-  \end{center}   
-   
-   \end{figure}
+\begin{center}
+\centering 
+\includegraphics[scale=0.5]{fig/klassiek_systeem}    
+	\label{Figuur::randomisatie}  
+ 
+\end{center}
+
 Gebruikers hebben vaak een impliciet vertrouwen in de provider om verantwoord met hun data om te springen. 
 \pagebreak
 \section{Privacygevoelige data bij klassieke aanbevelingssystemen}
@@ -102,7 +94,7 @@ Veelgebruikte aanbevelingssystemen als content-based recommenders en collaborati
 \section{Privacyrisico's bij aanbevelingssystemen}
 \label{sec:risicos}
 \subsection{De gebruiker onderschat de omvang van de informatie die over hem wordt bijgehouden}
-Van een smaakprofiel aan de hand van likes, het bijhouden van de operating systemversie met behulp van \emph{third-party} analytische tools tot het inkijken van de bezochte websites, een gebruiker is zich niet altijd bewust van de omvang van de data die van hem wordt bijgehouden\cite{pirs}. Dit is waarschijnlijk ook deels te wijten aan dat weinig gebruikers de privacyvoorwaarden lezen vooraleer een applicatie te starten. Uit een studie \cite{privdisc} bij 274 studenten bleek bijvoorbeeld 55.1\% de Facebook privacy policy niet gelezen te hebben. Hoofnagle et al. verrichte in \cite{hoofnagle} een studie over alle leeftijdsgroepen heen die hetzelfde vermoeden bevestigt. Hier blijkt  50\% van een groep van 975 personen nooit of bijna nooit de privacy policies op websites te lezen. Er is ook gewoonlijk weinig keuze, indien men de voorwaarden niet aanvaardt wordt de toegang tot de applicatie gewoonweg ontzegd. 
+Van een smaakprofiel aan de hand van likes, het bijhouden van de versie van het besturingssysteem met behulp van \emph{third-party} analytische tools tot het inkijken van de bezochte websites, een gebruiker is zich niet altijd bewust van de omvang van de data die van hem wordt bijgehouden\cite{pirs}. Dit is waarschijnlijk ook deels te wijten aan het feit dat weinig gebruikers de privacyvoorwaarden lezen vooraleer ze een applicatie starten. Uit een studie \cite{privdisc} bij 274 studenten bleek bijvoorbeeld 55.1\% de Facebook privacy policy niet gelezen te hebben. Hoofnagle et al. verrichte in \cite{hoofnagle} een studie over alle leeftijdsgroepen heen die hetzelfde vermoeden bevestigt. Hier blijkt  50\% van een groep van 975 personen nooit of bijna nooit de privacy policies op websites te lezen. Er is ook gewoonlijk weinig keuze, indien men de voorwaarden niet aanvaardt wordt de toegang tot de applicatie gewoonweg ontzegd. 
 \subsection{Onterecht vertrouwen in de service provider}
 \label{onterecht_vertrouwen}
 \subsubsection{Het verkopen van data}
@@ -114,7 +106,7 @@ Eens informatie van de gebruiker op het internet staat is ze helaas moeilijk te 
 
 
 \section{Preventie van inbreuken op de privacy}
-Nu er inzicht verkregen is welke risico's de gebruiker loopt kan er onderzocht worden wat er kan doen gebeuren inbreuken op zijn privacy te voorkomen.
+Nu er inzicht verkregen in de risico's die een gebruiker loopt, kan er onderzocht worden wat er mogelijk is om inbreuken op zijn privacy te voorkomen.
 
 \subsection{De gebruiker informeren}
 

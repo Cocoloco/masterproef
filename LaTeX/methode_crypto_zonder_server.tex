@@ -1,4 +1,3 @@
-
 \subsection{Met behulp van cryptografische protocollen zonder server}
 
 Hier is het uitgangspunt dat er geen vertrouwen meer nodig is in een provider indien de provider niet betrokken is bij het berekenen van aanbevelingen. Men werkt dus op een \textit{peer-to-peer} basis. De privacy van de gebruikers onderling wordt gerespecteerd door middel van secure multi-party computation.
@@ -12,7 +11,7 @@ Een voorbeeld is uitgewerkt door Hoens et al.
 Deze methode benut de vriendschapsrelaties op sociale netwerken. Men stelt dat aanbevelingen berekenen aan de hand van een sociaal netwerk betere resultaten levert dan een algemene aanpak omdat er gelijkenissen zijn tussen de smaak van een persoon en de smaak van zijn netwerk (vrienden, vrienden van vrienden,..). Een score voor een item wordt berekend door een gewogen gemiddelde te bepalen van de ratings van het netwerk van die persoon. Een optie is om hierbij de ratings van de gebruikers die dichter bij de gebruiker staan meer gewicht te geven. 
 Tijdens de berekening van de score mag een gebruiker geen private informatie over het ratingsgedrag van een andere gebruiker te weten komen.
 
-De vrienden van een gebruiker worden in deze context bekeken als zijn onmiddellijke kinderen in de boom. Eerst worden zijn onmiddellijke kinderen in de boom naar hun rating gevraagd om er een gewogen gemiddelde van te bepalen. Zij berekenen op hun beurt een rating op basis van een gewogen gemiddelde van hun kinderen enzovoort. Dit gebeurt tot de gewenste diepte bereikt is. De gebruiker kan eventueel zelf instellen hoe diep er mag worden afgedaald in de vriendschapsboom. Dit systeem heeft als nadeel dat bij één interactieronde elke gebruiker online moet zijn op het sociaal netwerk.
+De vrienden van een gebruiker worden in deze context bekeken als zijn onmiddellijke kinderen in de boom. Eerst worden zijn onmiddellijke kinderen in de boom naar hun rating gevraagd om er een gewogen gemiddelde van te bepalen. Zij berekenen op hun beurt een rating op basis van een gewogen gemiddelde van hun kinderen enzovoort. Dit gebeurt tot de gewenste diepte bereikt is. De gebruiker kan eventueel zelf instellen hoe diep er mag worden afgedaald in de vriendschapsboom. Dit systeem heeft als nadeel dat bij \'e\'en interactieronde elke gebruiker online moet zijn op het sociaal netwerk.
 
 Bij dit proces mag enkel de vragende gebruiker het voor hem berekende eindresultaat te weten komen. Andere tussenresultaten mogen noch door de aanvrager zelf of zijn netwerk leesbaar zijn. Om dit te bereiken worden verschillende cryptografische protocollen gebruikt. 
 

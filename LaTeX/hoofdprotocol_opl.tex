@@ -1,5 +1,5 @@
 \subsection{Hoofdprotocol}
-Hier wordt het protocol besproken tussen de gebruikerapplicatie en de twee servers als de gebruiker aanbevelingen vraagt. Alvorens het aanvragen van aanbevelingen slaat een gebruiker zijn beoordelingen en voorkeuren op en stuurt ze dan samen in zijn profiel naar de recommenderserver (\ref{voor_aanvraag}). Eens user 1 aanbevelingen vraagt is de eerste stap de gelijkenisfactor berekenen tussen user 1 en de andere users Ux. Dit gebeurt door de aanbevelingsserver in paragraaf \ref{similarities}.  Daarna gaat de server met het thresholdprotocol (\ref{threshold}) na of deze ge\"encrypteerde waarden boven een drempelwaarde liggen. Nu bezit de recommender een ge\"encrypteerde bit per gebruiker die aangeeft of dit wel (1) of niet (0) het geval is. Hierop starten de recommender en de privacy provider een nieuw protocol waarbij de controleserver een deel van de gebruikers selecteert die kunnen meedoen aan het protocol (\ref{selection}). De resultaatbits hiervan geven aan of de ratings van respectievelijke gebruiker zullen worden meegeteld in het berekenen van de aanbevelingen. Het multiplicationprotocol (\ref{multiplication}) vermenigvuldigt deze gebruikerbits met zijn overeenkomstige ratings. Daarna wordt de som van de ratings per item genomen over alle gebruikers heen in paragraaf \ref{sumoverallusers} en wordt het resultaat privacyvriendelijk naar de gebruiker gebracht (\ref{result}). Dit is de code van het protocol op de recommenderserver : 
+Hier wordt het protocol besproken tussen de gebruikerapplicatie en de twee servers als de gebruiker aanbevelingen vraagt. Alvorens het aanvragen van aanbevelingen slaat een gebruiker zijn beoordelingen en voorkeuren op en stuurt ze dan samen in zijn profiel naar de recommenderserver (\ref{voor_aanvraag}). Eens gebruiker 1 aanbevelingen vraagt is de eerste stap de gelijkenisfactor berekenen tussen gebruiker 1 en de andere gebruikers Ux. Dit gebeurt door de aanbevelingsserver in paragraaf \ref{similarities}.  Daarna gaat de server met het thresholdprotocol (\ref{threshold}) na of deze ge\"encrypteerde waarden boven een drempelwaarde liggen. Nu bezit de recommender een ge\"encrypteerde bit per gebruiker die aangeeft of dit wel (1) of niet (0) het geval is. Hierop starten de recommender en de privacy provider een nieuw protocol waarbij de controleserver een deel van de gebruikers selecteert die kunnen meedoen aan het protocol (\ref{selection}). De resultaatbits hiervan geven aan of de ratings van respectievelijke gebruiker zullen worden meegeteld in het berekenen van de aanbevelingen. Het multiplicationprotocol (\ref{multiplication}) vermenigvuldigt deze gebruikerbits met zijn overeenkomstige ratings. Daarna wordt de som van de ratings per item genomen over alle gebruikers heen in paragraaf \ref{sumoverallusers} en wordt het resultaat privacyvriendelijk naar de gebruiker gebracht (\ref{result}). Dit is de code van het protocol op de recommenderserver : 
 
 \begin{verbatim}
 @POST
@@ -7,21 +7,7 @@ Hier wordt het protocol besproken tussen de gebruikerapplicatie en de twee serve
 @Produces({"application/json"})
 @Consumes({"application/json"})
 public ResultDAO getRecommendations(RecommendationDAO rd)... {    
-	String username = rd.getUsername();        
-    PublicKey pubKeyPaillierControlServer;
-    PublicKeyDGKDAO pubKeyDGKControlServer;
-    try {
-    		pubKeyPaillierControlServer = HTTPClient.getPublicKeyPaillierControlServer();
-        pubKeyDGKControlServer = HTTPClient.getPublicKeyDGKControlServer();
-    } catch (Exception ex) {
-  	    throw new HttpException
-            ("Could not get public key control server :" + ex.getMessage());
-    }
-    String userQuery = "select * from user where username = '"+username+"'";
-    Query q = getEntityManager().createNativeQuery(userQuery, User.class);
-    if(q.getResultList().size()<=0){
-        throw new HttpException("Could not find user :" +username);
-    }
+	...
     //berekenen van gelijkeniswaarden
     SimDAO sDao = getSimilarities((User) q.getSingleResult(),
     pubKeyPaillierControlServer);
@@ -47,11 +33,10 @@ public ResultDAO getRecommendations(RecommendationDAO rd)... {
 Het sequentiediagram \ref{Figuur::hoofdprotocoldiagram} geeft de communicatie weer tussen de clientapplicaties en de twee servers als een gebruiker aanbevelingen vraagt. De paragrafen waar de onderdelen ervan besproken worden staan links aangegeven. Functies, protocollen en taken staan in het zwart aangegeven, attributen in het blauw. De berekeningen op de aanbevelingsserver gebeuren in het gesloten Pailliersysteem getekend met publieke sleutel S2 zodat de server geen persoonlijke data kan lezen.
 
 \begin{center}
-\begin{figure}[htpb]   
-    \label{Figuur::hoofdprotocoldiagram}      
-   
-\centering\includegraphics[width=1.0\textwidth,keepaspectratio]{fig/hoofdprotocol_privacy}    
-   
-   \end{figure}
-   \end{center}
+\centering
+\includegraphics[width=1.0\textwidth,keepaspectratio]{fig/hoofdprotocol_privacy}   %
+\label{Figuur::hoofdprotocoldiagram}%
+\end{center}
+
+
 

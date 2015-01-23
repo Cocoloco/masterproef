@@ -1,27 +1,29 @@
 \subsection{Homomorfe encryptie}
-Homomorfe encryptie is een encryptietechniek die toelaat om bewerkingen op cijferteksten uit te voeren die overeenkomen met bewerkingen op de onderliggende data van deze cijferteksten. Er wordt een onderscheid gemaakt tussen additief en multiplicatief homomorf. Additieve cryptosystemen bevatten een operatie op twee cijferteksten die overeenkomt met de som van de data. De volgende formules \cite{erkin:generating} tonen deze additieve homomorfe eigenschap bij additieve systemen op basis van vermenigvuldiging. De encryptie $\mathcal{E}$ en decryptie $\mathcal{D}$ van de berichten $m_1$ en $m_2$ gebeuren logischerwijs met de bij elkaar horende publieke en private sleutel.
+Homomorfe encryptie is een encryptietechniek die toelaat om bewerkingen op ge\"encrypteerde waarden of \emph{ciphertext} uit te voeren die overeenkomen met bewerkingen op de onderliggende data. Er wordt een onderscheid gemaakt tussen additief en multiplicatief homomorf. Additieve cryptosystemen bevatten een operatie op twee ge\"encrypteerde waarden die overeenkomt met de som van de data. De volgende formules \cite{erkin:generating} tonen deze additieve homomorfe eigenschap bij additieve systemen op basis van vermenigvuldiging. De encryptie $\mathcal{E}$ en decryptie $\mathcal{D}$ van de berichten $m_1$ en $m_2$ gebeuren logischerwijs met de bij elkaar horende publieke en private sleutel.
 
-\begin{equation}\label{pearson}\mathcal{D}(\mathcal{E}(m_1).\mathcal{E}(m_2)) = m1 + m2
+\begin{equation}\label{homoplus}\mathcal{D}(\mathcal{E}(m_1).\mathcal{E}(m_2)) = m1 + m2
 \end{equation}
 Als gevolg hiervan kan ook de vermenigvuldiging berekend worden van de data met een niet ge\"encrypteerd getal.
 
-\begin{equation}\label{pearson}\mathcal{D}((\mathcal{E}(m))^a) = m.a
+\begin{equation}\label{homomaal}\mathcal{D}(\mathcal{E}(m)^a) = m.a
 \end{equation}
 De gebruikte systemen, Paillier en DGK, ondersteunen beide de additieve homomorfe eigenschap op basis van vermenigvuldiging.
 
 Voor de volledigheid is dit de formule voor multiplicatieve homomorfe systemen op basis van vermenigvuldiging.
 
-\begin{equation}\label{pearson}\mathcal{D}(\mathcal{E}(m_1).\mathcal{E}(m_2)) = m1 . m2
+\begin{equation}\mathcal{D}(\mathcal{E}(m_1).\mathcal{E}(m_2)) = m1 . m2
 \end{equation}
 \subsubsection{Een Pailliercryptosysteem}
 \label{paillier}
 De encryptie in een Pailliersysteem is op de volgende manier gedefinieerd \cite{erkin:generating}:
 
-\begin{equation}\label{pearson}\mathcal{E}(m,r) = g^m.r^n mod n^2
+\begin{equation}\label{paillierenc}\mathcal{E}(m,r) = g^m.r^n\mod n^2
 \end{equation}
+Hier is m de plaintext en n het product van p en q, twee grote priemgetallen. De publieke sleutel wordt gevormd door (n,g) en de private sleutel door (p,q). Het gebruik van de randomwaarde r zorgt ervoor dat het Pailliersysteem semantisch veilig is. Dit betekent dat elke encryptie van dezelfde plaintext nooit resulteert in dezelfde ciphertext. Deze eigenschap komt later van pas in de privacyvriendelijke oplossing. Uit volledigheid ook de formule van de decriptie in een Pailliersysteem:
 
-Hier is n het product van p en q, twee grote priemgetallen. De publieke sleutel wordt gevormd door (n,g) en de private sleutel door (p,q). Het gebruik van de randomwaarde r zorgt ervoor dat het Pailliersysteem semantisch veilig is. Dit betekent dat elke encryptie van dezelfde plaintext nooit resulteert in dezelfde ciphertext. Deze eigenschap komt later van pas in de privacyvriendelijke oplossing.
-Zoals eerder vermeld ondersteunt het Pailliercryposysteem de additieve homomorfe eigenschap op basis van vermenigvuldiging. 
+\begin{equation}\label{paillierdec} m = \frac{L(c^{\lambda}\mod n^2)}{L(g^{\lambda} \mod n^2)}\mod n, \lambda(n) =kgv (p-1,q-1), L(u)=\frac{u-1}{n}
+\end{equation}
+Voor de decryptie is $\lambda$ nodig, dat het kleinste gemene veelvoud is van $p-1$ en $q-1$, de twee waarden uit de private sleutel. Zoals eerder vermeld ondersteunt het Pailliercryposysteem de additieve homomorfe eigenschap op basis van de vermenigvuldiging. 
 \begin{comment}
 Deze eigenschap kan snel aangetoond worden. 
 \end{comment}
