@@ -1,11 +1,8 @@
 \subsection{Selectie maken van gebruikers}
 \label{selection}
-Na het meerdere keren aanroepen van het aanbevelingssysteem, zou het systeem of een gebruiker kunnen afleiden de data van welke gebruikers welke invloed heeft op de aanbevelingen. Dit heet een new group attack en is eerder al vernoemd in \ref{cryptoprotocollen}. Om een new group attack tegen te gaan wordt er door de controleserver een selectie van gebruikers gemaakt die kunnen deelnemen aan het protocol. De recommender kent deze selectie dus niet. De recommender zou daarvoor de gelijkenisbits naar de controleserver moeten sturen. De bits zijn nog ge\"encrypteerd met de publieke sleutel van de controleserver, die deze bits niet mag kennen. Om dit op te lossen worden er randomgetallen $[\rho_i]_1$ bij de ge\"encrypteerde simbits geteld. Het randomgetal wordt zelf ook meegestuurd, ge\"encrypteerd met de publieke sleutel van de recommenderserver. Zo kan de controleserver $[sim_i+\rho_i]_2$ decrypteren met zijn eigen private sleutel. Deze som encrypteert hij dan weer met de publieke sleutel van de recommenderserver. Op die manier kan hij de randomwaarde hiervan aftrekken met het Pailliersysteem $[sim_i+\rho_i-\rho_i]_1$ en de originele gelijkenisbits verkrijgen. De controleserver maakt nu een tabel aan met bits met evenveel 1-waarden als gebruikers die hij wil betrekken in het protocol. In \cite{ZErkinDyn} wordt een waarde $n/2$ voorgesteld voor voldoende privacy. De server vermenigvuldigt deze bits met de gelijkenisbits en stuurt het resultaat terug naar de aanbevelingsserver. Hierbij wordt nogmaals gewisseld van cryptosysteem zoals bij het heensturen van de bits. Hier volgt een kijk in de code die aangeeft wat er gebeurt op de controleserver als deze een selectie moet maken. Er werd een extra constructor gemaakt voor EncryptedInteger uit het Pailliercryptosysteem uit THEP. De constructor waar de Pailliersleutel als eerste argument gegeven wordt cree\"ert een EncryptedIntegerobject op basis van een ge\"encrypteerd BigIntegerobject. De tweede en originele constructor, waar de Pailliersleutel als tweede argument wordt gegeven zal een plaintext BigIntegerobject encrypteren en op basis hiervan een EncryptedIntegerobject maken.
+Na het meerdere keren aanroepen van het aanbevelingssysteem, zou het systeem of een gebruiker kunnen afleiden welke invloed de data van bepaalde gebruikers heeft op de aanbevelingen. Dit heet een new group attack en is eerder al vernoemd in \ref{cryptoprotocollen}. Om een new group attack tegen te gaan wordt er door de controleserver een selectie van gebruikers gemaakt die kunnen deelnemen aan het protocol. De recommender mag deze selectie dus niet kennen. Om een selectie te laten maken zou de recommender de gelijkenisbits naar de controleserver moeten sturen. De bits zijn nog ge\"encrypteerd met de publieke sleutel van de controleserver, die deze bits niet mag kennen. Om dit op te lossen worden er randomgetallen $[\rho_i]_1$ bij de ge\"encrypteerde simbits geteld. Het negatieve randomgetal wordt zelf ook meegestuurd, ge\"encrypteerd met de publieke sleutel van de recommenderserver. Zo kan de controleserver $[sim_i+\rho_i]_2$ decrypteren met zijn eigen private sleutel. Deze som encrypteert hij dan weer met de publieke sleutel van de recommenderserver. Op die manier kan hij de randomwaarde hiervan aftrekken met het Pailliersysteem $[sim_i+\rho_i-\rho_i]_1$ en de originele gelijkenisbits verkrijgen. De controleserver maakt nu een tabel aan met bits met evenveel 1-waarden als gebruikers die hij wil betrekken in het protocol. In \cite{ZErkinDyn} wordt een waarde $n/2$ voorgesteld voor voldoende privacy. De server vermenigvuldigt deze bits met de gelijkenisbits en stuurt het resultaat terug naar de aanbevelingsserver. Hierbij wordt nogmaals gewisseld van cryptosysteem zoals bij het heensturen van de bits. Hier volgt een kijk in de code die aangeeft wat er gebeurt op de controleserver als deze een selectie moet maken. Er werd een extra constructor gemaakt voor EncryptedInteger uit het Pailliercryptosysteem uit THEP. De constructor waar de Pailliersleutel als eerste argument gegeven wordt cree\"ert een EncryptedIntegerobject op basis van een ge\"encrypteerd BigIntegerobject. De tweede en originele constructor, waar de Pailliersleutel als tweede argument wordt gegeven zal een plaintext BigIntegerobject encrypteren en op basis hiervan een EncryptedIntegerobject maken.
 
 \begin{verbatim}
-@POST
-@Consumes("application/json")
-@Produces("application/json")
 public DeltaDAO exchangeDeltas(DeltaDAO d) throws Exception {...
     //Afhankelijk van het procent van de gebruikers worden er bits bepaald 
     // en door elkaar geschud
@@ -13,19 +10,16 @@ public DeltaDAO exchangeDeltas(DeltaDAO d) throws Exception {...
     	shuffleArray(bi);
     	List<BigInteger> rands = new ArrayList<BigInteger>();
     for(int j=0;j< d.getDeltas().size();j++){
-    // De controleserver decrypteert de waarde van de bit + de toegevoegde 
-    // randomwaarde door de recommenderserver.
+    // De controleserver decrypteert de waarde van (de bit + de toegevoegde 
+    // randomwaarde) door de recommenderserver.
        	EncryptedInteger inBit = new EncryptedInteger(
        		PaillierResource.pubKey,d.getDeltas().get(j));
        	BigInteger decryptInBit =  inBit.decrypt(PaillierResource.privKey);
-    // De controleserver cree\"ert een EncryptedIntegerobject van de meegestuurde 
-    // ge\"encrypteerde randomwaarde en vermenigvuldigt deze met -1 via Paillier.
+    // De controleserver encrypteert de gedecrypteerde waarde met de publieke sleutel
+    // van de recommenderserver zodat hij er de negatieve randomwaarde kan bij 
+    // optellen en de ge\"encrypteerde versie van de originele bit verkrijgt.
     		EncryptedInteger randEncRec = new 
         		EncryptedInteger(pubKeyRecommenderServer,d.getRandoms().get(j));
-      	randEncRec.multiply(new BigInteger("-1"));
-    // De controleserver encrypteert de gedecrypteerde waarde met de publieke sleutel
-    // van de recommenderserver zodat hij beide kan samentellen en 
-    // de ge\"encrypteerde versie van de originele bit verkrijgt.
       	EncryptedInteger bEncRec = new EncryptedInteger(decryptInBit,
       		pubKeyRecommenderServer);
         	bEncRec= bEncRec.add(randEncRec);
@@ -37,7 +31,8 @@ public DeltaDAO exchangeDeltas(DeltaDAO d) throws Exception {...
        	EncryptedInteger rEnc = new EncryptedInteger(random,pubKeyRecommenderServer);
         	bEncRec = bEncRec.add(rEnc);
        	d.getDeltas().set(j, bEncRec.getCipherVal());
-       	rands.add(new EncryptedInteger(random,PaillierResource.pubKey).getCipherVal());        
+       	random =random.multiply(new BigInteger("-1");
+       	rands.add(new EncryptedInteger(random),PaillierResource.pubKey).getCipherVal());        
    	}
     	d.setRandoms(rands);
     	return d;        

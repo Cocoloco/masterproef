@@ -3,13 +3,13 @@ Homomorfe encryptie is een encryptietechniek die toelaat om bewerkingen op ge\"e
 
 \begin{equation}\label{homoplus}\mathcal{D}(\mathcal{E}(m_1).\mathcal{E}(m_2)) = m1 + m2
 \end{equation}
-Als gevolg hiervan kan ook de vermenigvuldiging berekend worden van de data met een niet ge\"encrypteerd getal.
+Als gevolg hiervan kan ook de vermenigvuldiging berekend worden van de onderliggende data met een niet ge\"encrypteerd getal.
 
 \begin{equation}\label{homomaal}\mathcal{D}(\mathcal{E}(m)^a) = m.a
 \end{equation}
 De gebruikte systemen, Paillier en DGK, ondersteunen beide de additieve homomorfe eigenschap op basis van vermenigvuldiging.
 
-Voor de volledigheid is dit de formule voor multiplicatieve homomorfe systemen op basis van vermenigvuldiging.
+Voor de volledigheid is dit de formule voor multiplicatief homomorfe systemen op basis van vermenigvuldiging.
 
 \begin{equation}\mathcal{D}(\mathcal{E}(m_1).\mathcal{E}(m_2)) = m1 . m2
 \end{equation}
@@ -19,14 +19,14 @@ De encryptie in een Pailliersysteem is op de volgende manier gedefinieerd \cite{
 
 \begin{equation}\label{paillierenc}\mathcal{E}(m,r) = g^m.r^n\mod n^2
 \end{equation}
-Hier is m de plaintext en n het product van p en q, twee grote priemgetallen. De publieke sleutel wordt gevormd door (n,g) en de private sleutel door (p,q). Het gebruik van de randomwaarde r zorgt ervoor dat het Pailliersysteem semantisch veilig is. Dit betekent dat elke encryptie van dezelfde plaintext nooit resulteert in dezelfde ciphertext. Deze eigenschap komt later van pas in de privacyvriendelijke oplossing. Uit volledigheid ook de formule van de decriptie in een Pailliersysteem:
+Hier is m de plaintext en n het product van p en q, twee grote priemgetallen. De publieke sleutel wordt gevormd door (n,g) en de private sleutel door (p,q). Het gebruik van de randomwaarde r zorgt ervoor dat het Pailliersysteem semantisch veilig is. Dit betekent dat elke encryptie van dezelfde plaintext nooit resulteert in dezelfde ciphertext. Deze eigenschap komt later van pas in de privacyvriendelijke oplossing. Voor de volledigheid vindt u hier ook de formule van de decriptie in een Pailliersysteem:
 
 \begin{equation}\label{paillierdec} m = \frac{L(c^{\lambda}\mod n^2)}{L(g^{\lambda} \mod n^2)}\mod n, \lambda(n) =kgv (p-1,q-1), L(u)=\frac{u-1}{n}
 \end{equation}
-Voor de decryptie is $\lambda$ nodig, dat het kleinste gemene veelvoud is van $p-1$ en $q-1$, de twee waarden uit de private sleutel. Zoals eerder vermeld ondersteunt het Pailliercryposysteem de additieve homomorfe eigenschap op basis van de vermenigvuldiging. 
+Voor de decryptie is $\lambda$ nodig, dat het kleinste gemene veelvoud is van $p-1$ en $q-1$, de twee waarden uit de private sleutel. Zoals eerder vermeld ondersteunt het Pailliercryposysteem de additief homomorfe eigenschap op basis van de vermenigvuldiging. 
 \begin{comment}
 Deze eigenschap kan snel aangetoond worden. 
 \end{comment}
 \subsubsection{Een Damgard, Geisler en Kroigaard cryptosysteem (DGK)}
 \label{dgk}
-Het DGKsysteem ondersteunt net als Paillier de additieve homomorfe eigenschap op basis van vermenigvuldiging en is net als Paillier semantisch veilig. Voor hetzelfde veiligheidsniveau heeft het echter een kleinere berichtgrootte en het is dus effici\"enter dan Paillier. Het is vooral zeer effici\"ent in het nagaan met de private sleutel of een ge\"encrypteerde bit op nul staat.
+Het DGKsysteem ondersteunt net als Paillier de additief homomorfe eigenschap op basis van vermenigvuldiging en is net als Paillier semantisch veilig. Voor hetzelfde veiligheidsniveau heeft het echter een kleinere berichtgrootte en het is dus effici\"enter dan Paillier. Het is vooral zeer effici\"ent in het nagaan met de private sleutel of een ge\"encrypteerde bit op nul staat.
